@@ -1,15 +1,15 @@
 services:
   db:
-    image: postgres:15
+    image: postgis/postgis:latest
     container_name: postgres_db
     environment:
-      POSTGRES_USER: mahi         # Define your database username
+      POSTGRES_USER: mahi # Define your database username
       POSTGRES_PASSWORD: mahi123 # Define your password
-      POSTGRES_DB: inventory_manage      # Define your database name
+      POSTGRES_DB: inventory_manage # Define your database name
     ports:
-      - "5432:5432"                # Expose PostgreSQL on port 5432
+      - "5432:5432" # Expose PostgreSQL on port 5432
     volumes:
-      - postgres_data:/var/lib/postgresql/data  # Persist PostgreSQL data
+      - postgres_data:/var/lib/postgresql/data # Persist PostgreSQL data
 
     networks:
       - inventory_network
@@ -20,18 +20,17 @@ services:
     volumes:
       - .:/app
     ports:
-      - "8000:8000"  # Expose Django app on port 8000
+      - "8000:8000" # Expose Django app on port 8000
     depends_on:
-      - db  # Wait for the db container to be ready before running the web service
+      - db # Wait for the db container to be ready before running the web service
     environment:
       - POSTGRES_HOST=db
       - POSTGRES_PORT=5432
       - POSTGRES_USER=mahi
       - POSTGRES_PASSWORD=mahi123
-      - POSTGRES_DB=inventory_manage 
+      - POSTGRES_DB=inventory_manage
     networks:
       - inventory_network
-
 
   pgadmin:
     image: dpage/pgadmin4:latest
@@ -46,7 +45,6 @@ services:
     restart: unless-stopped
     networks:
       - inventory_network
-
 
 volumes:
   postgres_data:

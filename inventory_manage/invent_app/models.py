@@ -1,23 +1,20 @@
 from django.contrib.gis.db import models
 from django.contrib.auth.models import User
 
+class Location(models.Model):
+    id = models.CharField(max_length=20, primary_key=True)
+    title = models.CharField(max_length=100)
+    center = models.PointField()
+    parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
+    location_type = models.CharField(max_length=20)
+    country_code = models.CharField(max_length=2)
+    state_abbr = models.CharField(max_length=3, blank=True, null=True)
+    city = models.CharField(max_length=30, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
-
-# class Location(models.Model):
-#     id = models.CharField(max_length=20, primary_key=True)
-#     title = models.CharField(max_length=100)
-#     center = models.PointField()
-#     parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
-#     location_type = models.CharField(max_length=20)
-#     country_code = models.CharField(max_length=2)
-#     state_abbr = models.CharField(max_length=3, blank=True, null=True)
-#     city = models.CharField(max_length=30, blank=True, null=True)
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     updated_at = models.DateTimeField(auto_now=True)
-
-#     def __str__(self):
-#      return self.title
-
+    def __str__(self):
+        return self.title
 
 class Accommodation(models.Model):
     id = models.CharField(max_length=20, primary_key=True)
@@ -29,7 +26,7 @@ class Accommodation(models.Model):
     usd_rate = models.DecimalField(max_digits=10, decimal_places=2)
     center = models.PointField()
     images = models.JSONField(default=list)
-    #location = models.ForeignKey( on_delete=models.CASCADE)
+    #location = models.ForeignKey(Location, on_delete=models.CASCADE)
     amenities = models.JSONField(default=list)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     published = models.BooleanField(default=False)
@@ -48,4 +45,3 @@ class LocalizeAccommodation(models.Model):
 
     def __str__(self):
         return f"{self.property.title} - {self.language}"
-

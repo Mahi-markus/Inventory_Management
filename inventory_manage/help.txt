@@ -1,0 +1,58 @@
+# for environment
+________________________________________________________For Linux___________________________________
+
+python3 -m venv .venv
+source .venv/bin/activate
+deactivate
+______________________________________________________For Windows__________________________________________
+
+python -m venv .venv
+ .venv/Scripts/activate 
+deactivate
+
+
+
+
+
+
+
+----------------------------for Django----------------------------------
+docker exec -it djangotutorial-web-1
+
+
+docker exec -it inventory_manage-web-1 python manage.py makemigrations
+docker exec -it inventory_manage-web-1 python manage.py migrate
+
+
+docker exec -it inventory_manage-web-1 python manage.py makemigrations polls
+
+docker exec -it inventory_manage-web-1 python manage.py sqlmigrate polls 0001
+
+
+docker exec -it djangotutorial-web-1 python manage.py shell
+
+docker exec -it djangotutorial-web-1 python manage.py test polls
+
+docker exec -it djangotutorial-web-1 python manage.py runserver
+----------------------------------------------------------------------------------------
+docker exec -it inventory_manage-web-1 python manage.py createsuperuser
+1.
+Username: admin
+admin@example.com
+Password=admin123
+2.
+Username: admin2
+email: admin2@gmail.com
+Password=admin321
+
+
+docker exec -it djangotutorial-web-1 python manage.py runserver
+_____________________________________________pgadmin_____________________________-
+Email: admin@admin.com
+Password: admin123
+
+
+
+--------------------------------------------------------
+ docker compose up --build
+  docker compose down

@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
    
     'polls',
-    'invent_app'
+    'invent_app',
+     "rest_framework",
+    'django.contrib.gis',
 ]
 
 MIDDLEWARE = [
@@ -78,7 +80,7 @@ WSGI_APPLICATION = 'inventory.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        "ENGINE": "django.contrib.gis.db.backends.postgis",
         'NAME': 'inventory_manage',         # The name of the database you created
         'USER': 'mahi',             # The username you defined
         'PASSWORD': 'mahi123',     # The password you defined
