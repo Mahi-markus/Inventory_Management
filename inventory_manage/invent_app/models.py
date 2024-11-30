@@ -1,6 +1,11 @@
 from django.contrib.gis.db import models
 from django.contrib.auth.models import User
 
+# Function that returns the default Location
+def get_default_location():
+    # Replace this with logic to return a valid Location instance
+    return Location.objects.first() 
+
 class Location(models.Model):
     id = models.CharField(max_length=20, primary_key=True)
     title = models.CharField(max_length=100)
@@ -26,7 +31,7 @@ class Accommodation(models.Model):
     usd_rate = models.DecimalField(max_digits=10, decimal_places=2)
     center = models.PointField()
     images = models.JSONField(default=list)
-    #location = models.ForeignKey(Location, on_delete=models.CASCADE)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE, default=get_default_location)
     amenities = models.JSONField(default=list)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     published = models.BooleanField(default=False)
