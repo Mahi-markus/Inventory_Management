@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     
      "rest_framework",
     'django.contrib.gis',
+    'leaflet',
     
 ]
 
@@ -132,3 +133,13 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LEAFLET_CONFIG = {
+    'DEFAULT_CENTER': (23.6850, 90.3563),  # Center of the map (e.g., coordinates for Bangladesh)
+    'DEFAULT_ZOOM': 6,
+    'MIN_ZOOM': 3,
+    'MAX_ZOOM': 18,
+    'TILES': 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    'ATTRIBUTION_PREFIX': 'Powered by Django Leaflet',
+}

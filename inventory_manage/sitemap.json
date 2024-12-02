@@ -12,6 +12,14 @@
         "locations": []
     },
     {
+        "USA": "usa",
+        "locations": [
+            {
+                "texas": "usa/texas"
+            }
+        ]
+    },
+    {
         "wetrfwe": "wetrfwe",
         "locations": [
             {

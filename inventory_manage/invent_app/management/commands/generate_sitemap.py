@@ -16,17 +16,17 @@ class Command(BaseCommand):
             # Generate slug for country
             country_slug = slugify(country.title)
             country_data = {
-                country.title: country_slug,
-                "locations": []
+                country.title: country_slug,  # e.g., "USA": "usa"
+                "locations": []              # Child locations (states/cities)
             }
 
             # Query child locations (states/cities) of the country
             child_locations = Location.objects.filter(parent=country).order_by('title')
             for child in child_locations:
                 # Generate slug for child location (state/city)
-                child_slug = f"{country_slug}/{slugify(child.title)}"
+                child_slug = f"{country_slug}/{slugify(child.title)}"  # e.g., "usa/florida"
                 country_data["locations"].append({
-                    child.title: child_slug
+                    child.title: child_slug  # e.g., { "Florida": "usa/florida" }
                 })
 
             sitemap.append(country_data)
@@ -36,3 +36,5 @@ class Command(BaseCommand):
             json.dump(sitemap, file, indent=4)
 
         self.stdout.write(self.style.SUCCESS('Sitemap generated successfully as sitemap.json'))
+
+
