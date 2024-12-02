@@ -1,5 +1,13 @@
 [
     {
+        "Asia": "asia",
+        "locations": [
+            {
+                "bangladesh": "asia/bangladesh"
+            }
+        ]
+    },
+    {
         "mahi": "mahi",
         "locations": []
     },
