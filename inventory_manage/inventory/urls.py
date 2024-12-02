@@ -16,13 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from invent_app.views import signup
-
+from invent_app.views import property_owner_signup,user_login,user_dashboard
 
 urlpatterns = [
-   
     path("admin/", admin.site.urls),
-     path("signup/", signup),
-
-  
+    path("property-owner-signup/", property_owner_signup, name="property_owner_signup"),
+    path('login/', user_login, name='login'),
+    path('dashboard/', user_dashboard, name='user_dashboard'),
+    
 ]

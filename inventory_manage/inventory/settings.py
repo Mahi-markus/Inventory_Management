@@ -40,8 +40,10 @@ INSTALLED_APPS = [
    
     'polls',
     'invent_app',
+    
      "rest_framework",
     'django.contrib.gis',
+    
 ]
 
 MIDDLEWARE = [

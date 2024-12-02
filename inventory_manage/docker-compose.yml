@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgis/postgis:latest
+    image: postgis/postgis:15-3.3
     container_name: postgres_db
     environment:
       POSTGRES_USER: mahi # Define your database username

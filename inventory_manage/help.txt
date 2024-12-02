@@ -36,6 +36,12 @@ docker exec -it djangotutorial-web-1 python manage.py test polls
 docker exec -it djangotutorial-web-1 python manage.py runserver
 ----------------------------------------------------------------------------------------
 docker exec -it inventory_manage-web-1 python manage.py createsuperuser
+-----------------------------------------------
+
+
+docker exec -it inventory_manage-web-1 python manage.py generate_sitemap
+---------------------------------------------
+
 1.
 Username: admin
 admin@example.com
