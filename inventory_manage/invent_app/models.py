@@ -9,7 +9,7 @@ def get_default_location():
 class Location(models.Model):
     id = models.CharField(max_length=20, primary_key=True)
     title = models.CharField(max_length=100)
-    center = models.PointField()
+    center = models.PointField(null=True, blank=True)
     parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE)
     location_type = models.CharField(max_length=20)
     country_code = models.CharField(max_length=2)

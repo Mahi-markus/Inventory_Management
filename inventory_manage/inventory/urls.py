@@ -20,7 +20,7 @@ from invent_app.views import property_owner_signup,user_login,user_dashboard
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("property-owner-signup/", property_owner_signup, name="property_owner_signup"),
+    path("signup/", property_owner_signup, name="property_owner_signup"),
     path('login/', user_login, name='login'),
     path('dashboard/', user_dashboard, name='user_dashboard'),
     

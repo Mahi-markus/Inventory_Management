@@ -38,12 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
    
-    'polls',
+    
     'invent_app',
     
      "rest_framework",
     'django.contrib.gis',
     'leaflet',
+     'import_export',
     
 ]
 
