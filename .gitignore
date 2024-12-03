@@ -26,3 +26,11 @@ __pycache__/
 *.pyd
 __pycache__/
 *.so
+
+
+#coverage
+.coverage
+
+
+properties/migrations/*
+!properties/migrations/__init__.py

@@ -12,11 +12,11 @@ from import_export.admin import ImportExportModelAdmin
 
 
 
-# Register Accommodation with custom admin class
+
 
 # Register Accommodation with custom admin class
 @admin.register(Accommodation)
-class AccommodationAdmin(admin.ModelAdmin):
+class AccommodationAdmin(LeafletGeoAdmin, admin.ModelAdmin):
     list_display = ('id', 'title', 'country_code', 'bedroom_count', 'published', 'created_at', 'updated_at')
     search_fields = ('title', 'country_code')
     list_filter = ('published',)
@@ -63,18 +63,6 @@ class LocationAdmin(ImportExportModelAdmin, LeafletGeoAdmin):
     resource_class = LocationResource
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 # Register LocalizeAccommodation with custom admin class
 @admin.register(LocalizeAccommodation)
 class LocalizeAccommodationAdmin(admin.ModelAdmin):
@@ -82,11 +70,6 @@ class LocalizeAccommodationAdmin(admin.ModelAdmin):
     search_fields = ('property__title', 'language')
 
 
-
-
-
-
- # Customize the User Admin form
 # Custom User Change Form
 class CustomUserChangeForm(forms.ModelForm):
     class Meta:

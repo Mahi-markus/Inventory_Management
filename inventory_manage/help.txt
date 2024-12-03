@@ -90,3 +90,14 @@ docker volume rm inventory_manage_postgres_data
 
 then after build
 do a migrate
+
+
+--------------------------------------
+testing
+
+
+docker exec -it inventory_manage-web-1 coverage run manage.py test
+docker exec -it inventory_manage-web-1 sh
+docker exec -it inventory_manage-web-1 coverage run manage.py test
+docker exec -it inventory_manage-web-1  coverage report
+--------------------------------------

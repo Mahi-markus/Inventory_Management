@@ -29,7 +29,7 @@ class Accommodation(models.Model):
     bedroom_count = models.PositiveIntegerField()
     review_score = models.DecimalField(max_digits=3, decimal_places=1, default=0)
     usd_rate = models.DecimalField(max_digits=10, decimal_places=2)
-    center = models.PointField()
+    center = models.PointField(null=True, blank=True)
     images = models.JSONField(default=list)
     location = models.ForeignKey(Location, on_delete=models.CASCADE, default=get_default_location)
     amenities = models.JSONField(default=list)
