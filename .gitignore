@@ -3,7 +3,7 @@
 env/
 *.env
 
-.venv
+*.venv
 
 
 # Django specific
