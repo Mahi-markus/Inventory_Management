@@ -27,39 +27,54 @@ Ensure the following software is installed:
    ```bash
    git clone https://github.com/Mahi-markus/Inventory_Management.git
    ```
+
 ```bash
 cd Inventory_Management
 ```
+
 ### Set Up a Virtual Environment
 
 ```bash
 python -m venv .venv
 .venv/Scripts/activate    #On windows
 deactivate
-  ```
+```
+
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate    #On linux
 deactivate
 ```
-Install Dependencies
+
+### Run the Server
+
+```bash
+docker compose up --build
+```
+
+```bash
+docker compose up
+```
+
+### To stop
+
+```bash
+docker compose down
+
+```
+
+Install Dependencies(onptional if Dependemcies do any unusual problem)
+
 ```bash
 pip install -r requirements.txt
 ```
-Set Up PostgreSQL and PostGIS
-Install PostgreSQL and PostGIS.
-Create a database:
-
-
 
 ### Enable the PostGIS extension using the docker-compose.yml and Dockerfile.
 
-
-
-
 ### Configure Django Settings
 
-Update the DATABASES configuration in settings.py:
+Already Updated the DATABASES configuration in settings.py:
+
 ```bash
 
 DATABASES = {
@@ -75,13 +90,17 @@ DATABASES = {
 
 
 ```
+
 ### Apply Migrations
+
 ```bash
 docker exec -it inventory_manage-web-1 python manage.py makemigrations
 ```
+
 ```bash
 docker exec -it inventory_manage-web-1 python manage.py migrate
 ```
+
 ### Create a Superuser
 
 ```bash
@@ -89,17 +108,37 @@ docker exec -it inventory_manage-web-1 python manage.py migrate
 docker exec -it inventory_manage-web-1 python manage.py createsuperuser
 ```
 
-### Run the Server
-```bash
-docker compose up --build
- ```
+then put Username,Email and Password in order to create a super user.
 
-  ```bash
-docker compose up
-```
-### To stop 
 ```bash
-docker compose down
+for example:
+Username: admin
+email: admin@admin.com
+Password:admin
+and then type y to avoid Bypass password validation
 
 ```
-Access the application at  http://localhost:8000
+
+### Property owner group creation
+
+1. login accessing http://localhost:8000/admin as admin
+2. click groups and give a name for example: property_owners
+3. In permissions segment: select all the accomodation related permissions and then save.
+
+## Create a normal user(steps):
+
+1.  Access the application at http://localhost:8000
+2.  Fill all the necessary fields in order to create property owner user.
+3.  Then Click on the signup and then go to login or
+4.  Access the login page by this url: http://localhost:8000/admin
+
+## Giving persimision(as a admin) to normal usr to their see their own property and update
+
+1. login as admin.
+2. click on a normal user and Acitve,Staff Status both.
+3. In groups select the property owners group
+4. In user permission select all accomodation related permissions and save.
+
+## normal user
+
+1. After getting permission by admin a normal user can see his own accomomation and update,delete also.
