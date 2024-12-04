@@ -13,11 +13,11 @@ class Command(BaseCommand):
         sitemap = []
 
         for country in countries:
-            # Generate slug for country
+            # Generate slug for the country
             country_slug = slugify(country.title)
             country_data = {
-                country.title: country_slug,  # e.g., "USA": "usa"
-                "locations": []              # Child locations (states/cities)
+                country.title: country_slug,  # e.g., "USA": "usa",
+                "locations": []              # List of child locations (states/cities)
             }
 
             # Query child locations (states/cities) of the country
@@ -36,5 +36,6 @@ class Command(BaseCommand):
             json.dump(sitemap, file, indent=4)
 
         self.stdout.write(self.style.SUCCESS('Sitemap generated successfully as sitemap.json'))
+
 
 

@@ -1,5 +1,13 @@
 [
     {
+        "Asia": "asia",
+        "locations": [
+            {
+                "Bangladesh": "asia/bangladesh"
+            }
+        ]
+    },
+    {
         "Chittagong": "chittagong",
         "locations": [
             {
