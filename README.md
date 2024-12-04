@@ -25,7 +25,7 @@ Ensure the following software is installed:
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/Mahi-markus/Inventory_Management.git
+    git clone https://github.com/Mahi-markus/Inventory_Management.git
    ```
 
 ```bash
@@ -130,7 +130,7 @@ and then type y to avoid Bypass password validation
 1.  Access the application at http://localhost:8000
 2.  Fill all the necessary fields in order to create property owner user.
 3.  Then Click on the signup and then go to login or
-4.  Access the login page by this url: http://localhost:8000/admin
+4.  Access the login page by this url: http://localhost:8000/admin and then login as normal user.
 
 ## Giving persimision(as a admin) to normal usr to their see their own property and update
 
@@ -142,3 +142,11 @@ and then type y to avoid Bypass password validation
 ## normal user
 
 1. After getting permission by admin a normal user can see his own accomomation and update,delete also.
+
+### Importing location data
+
+### Dummy Data example to for tables or models
+
+### Sitemap generations nstruction
+
+### Testing Instructions
