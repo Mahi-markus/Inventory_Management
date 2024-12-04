@@ -50,12 +50,12 @@ class AccommodationAdmin(LeafletGeoAdmin, admin.ModelAdmin):
 class LocationResource(resources.ModelResource):
     class Meta:
         model = Location
-        fields = ('id', 'title', 'country_code', 'location_type', 'created_at', 'updated_at')  # Include the fields you want to import/export
+        fields = ('id', 'title', 'center', 'country_code', 'parent', 'state_abbr', 'city')  # Corrected fields # Include the fields you want to import/export
 
 # Register Location with custom admin class and import/export functionality
 @admin.register(Location)
 class LocationAdmin(ImportExportModelAdmin, LeafletGeoAdmin):
-    list_display = ('id', 'title','country_code', 'location_type', 'created_at', 'updated_at')
+    list_display = ('id', 'title','center','country_code', 'location_type', 'created_at', 'updated_at')
     search_fields = ('title', 'country_code')
     list_filter = ('location_type',)
 

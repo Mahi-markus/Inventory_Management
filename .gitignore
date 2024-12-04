@@ -5,10 +5,8 @@ env/
 .venv
 *.venv
 
-
 # Django specific
 *.log
-
 *.pot
 *.pyc
 *.pyo
@@ -19,7 +17,6 @@ __pycache__/
 .env
 .vscode/
 
-
 # Byte-compiled / optimized / DLL files
 *.pyc
 *.pyo
@@ -27,10 +24,9 @@ __pycache__/
 __pycache__/
 *.so
 
-
-#coverage
+# Coverage
 .coverage
 
-
+# Ignore all migrations except __init__.py
 properties/migrations/*
 !properties/migrations/__init__.py

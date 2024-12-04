@@ -8,3 +8,4 @@ pillow==11.0.0
 psycopg2-binary==2.9.10
 sqlparse==0.5.2
 tablib==3.7.0
+coverage

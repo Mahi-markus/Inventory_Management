@@ -15,12 +15,14 @@ class LocationModelTest(TestCase):
         )
 
     def test_location_creation(self):
+        """Test the creation of a Location instance"""
         self.assertEqual(self.location.title, "Test Country")
         self.assertEqual(self.location.country_code, "TC")
         self.assertEqual(self.location.center.coords, (0, 0))
         self.assertEqual(self.location.location_type, "Country")
 
     def test_location_invalid_creation(self):
+        """Test invalid creation of a Location instance"""
         with self.assertRaises(IntegrityError):
             Location.objects.create(
                 id="loc2",
@@ -31,59 +33,11 @@ class LocationModelTest(TestCase):
             )
 
     def test_location_str(self):
+        """Test string representation of Location"""
         self.assertEqual(str(self.location), "Test Country")
 
+
 class AccommodationModelTest(TestCase):
-    def setUp(self):
-        # Create a user for testing
-        self.user = User.objects.create_user(username="testuser", password="testpassword")
-        
-        # Create a location with a center point
-        self.location = Location.objects.create(
-            id="loc1",
-            title="Test Country",
-            center=Point(0, 0),  # Correctly setting the center as Point
-            country_code="TC",
-            location_type="Country"
-        )
-        
-        # Create an accommodation with a valid center point
-        self.accommodation = Accommodation.objects.create(
-            id="acc1",
-            title="Test Accommodation",
-            country_code="TC",
-            bedroom_count=3,
-            usd_rate=100.0,
-            location=self.location,
-            user=self.user,
-            center=Point(1, 1)  # Adding a center point for the accommodation
-        )
-
-    def test_accommodation_creation(self):
-        self.assertEqual(self.accommodation.title, "Test Accommodation")
-        self.assertEqual(self.accommodation.bedroom_count, 3)
-        self.assertEqual(self.accommodation.usd_rate, 100.0)
-        self.assertEqual(self.accommodation.user.username, "testuser")
-        self.assertEqual(self.accommodation.center.coords, (1, 1))  # Test the center value
-
-    def test_accommodation_invalid_creation(self):
-        with self.assertRaises(IntegrityError):
-            Accommodation.objects.create(
-                id="acc2",
-                title=None,  # Missing title should fail
-                country_code="TC",
-                bedroom_count=2,
-                usd_rate=200.0,
-                location=self.location,
-                user=self.user,
-                center=None  # Missing center should fail as well
-            )
-
-    def test_accommodation_str(self):
-        self.assertEqual(str(self.accommodation), "Test Accommodation")
-
-
-class LocalizeAccommodationModelTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(username="testuser", password="testpassword")
         self.location = Location.objects.create(
@@ -100,31 +54,86 @@ class LocalizeAccommodationModelTest(TestCase):
             bedroom_count=3,
             usd_rate=100.0,
             location=self.location,
-            user=self.user
+            user=self.user,
+            published=True
         )
+
+    def test_accommodation_creation(self):
+        """Test the creation of an Accommodation instance"""
+        self.assertEqual(self.accommodation.title, "Test Accommodation")
+        self.assertEqual(self.accommodation.bedroom_count, 3)
+        self.assertEqual(self.accommodation.usd_rate, 100.0)
+        self.assertEqual(self.accommodation.user.username, "testuser")
+        self.assertTrue(self.accommodation.published)
+
+    def test_accommodation_invalid_creation(self):
+        """Test invalid creation of an Accommodation instance"""
+        with self.assertRaises(IntegrityError):
+            Accommodation.objects.create(
+                id="acc2",
+                title=None,  # Missing title should fail
+                country_code="TC",
+                bedroom_count=2,
+                usd_rate=200.0,
+                location=self.location,
+                user=self.user,
+                published=True
+            )
+
+    def test_accommodation_str(self):
+        """Test string representation of Accommodation"""
+        self.assertEqual(str(self.accommodation), "Test Accommodation")
+
+
+class LocalizeAccommodationModelTest(TestCase):
+    def setUp(self):
+        # Create an Accommodation instance for the LocalizeAccommodation relationship
+        self.user = User.objects.create_user(username="testuser", password="testpassword")
+        self.location = Location.objects.create(
+            id="loc1",
+            title="Test Country",
+            center=Point(0, 0),
+            country_code="TC",
+            location_type="Country"
+        )
+        self.accommodation = Accommodation.objects.create(
+            id="acc1",
+            title="Test Accommodation",
+            country_code="TC",
+            bedroom_count=3,
+            usd_rate=100.0,
+            location=self.location,
+            user=self.user,
+            published=True
+        )
+
         self.localized_accommodation = LocalizeAccommodation.objects.create(
-            accommodation=self.accommodation,
+            property=self.accommodation,
             language="en",
-            localized_title="Localized Test Accommodation",
+            description="A cozy place to stay.",
+            policy={"check_in": "2 PM", "check_out": "11 AM"}
         )
 
     def test_localized_accommodation_creation(self):
+        """Test the creation of LocalizeAccommodation instance"""
         self.assertEqual(self.localized_accommodation.language, "en")
-        self.assertEqual(self.localized_accommodation.localized_title, "Localized Test Accommodation")
-        self.assertEqual(self.localized_accommodation.accommodation.title, "Test Accommodation")
+        self.assertEqual(self.localized_accommodation.description, "A cozy place to stay.")
+        self.assertEqual(self.localized_accommodation.policy["check_in"], "2 PM")
+        self.assertEqual(self.localized_accommodation.property, self.accommodation)
 
-    def test_localized_accommodation_invalid(self):
+    def test_localized_accommodation_invalid_creation(self):
+        """Test invalid creation of LocalizeAccommodation instances"""
         with self.assertRaises(IntegrityError):
             LocalizeAccommodation.objects.create(
-                accommodation=None,  # Missing accommodation should fail
-                language="fr",
-                localized_title="Titre localisé"
+                property=self.accommodation,
+                language=None,  # Missing language should fail
+                description="A description",
+                policy={"check_in": "2 PM"}
             )
 
     def test_localized_accommodation_str(self):
+        """Test string representation of LocalizeAccommodation"""
         self.assertEqual(
             str(self.localized_accommodation),
-            f"Localized Test Accommodation ({self.localized_accommodation.language})"
+            f"{self.localized_accommodation.property.title} - {self.localized_accommodation.language}"
         )
-
-
