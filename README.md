@@ -29,53 +29,65 @@ Ensure the following software is installed:
    ```
    ```bash
    cd Inventory_Management
-    
+    ```
     Set Up a Virtual Environment
 
 python3 -m venv venv
 source venv/bin/activate   # On Windows: venv\Scripts\activate
 
 Install Dependencies
-
+```bash
 pip install -r requirements.txt
-
+```
 Set Up PostgreSQL and PostGIS
 
     Install PostgreSQL and PostGIS.
     Create a database:
 
-CREATE DATABASE property_management;
+
 
 Enable the PostGIS extension:
 
-    CREATE EXTENSION postgis;
+
 
 Configure Django Settings
 
     Update the DATABASES configuration in settings.py:
-
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.contrib.gis.db.backends.postgis',
-            'NAME': 'property_management',
-            'USER': '<your_db_user>',
-            'PASSWORD': '<your_db_password>',
-            'HOST': 'localhost',
-            'PORT': '5432',
-        }
+```bash
+   DATABASES = {
+    'default': {
+        "ENGINE": "django.contrib.gis.db.backends.postgis",
+        'NAME': 'inventory_manage',         # The name of the database you created
+        'USER': 'dummy',             # The username you defined
+        'PASSWORD': 'dummy123',     # The password you defined
+        'HOST': 'db',                 # Use the container name (db) as the hostname
+        'PORT': '5432',               # The default PostgreSQL port
     }
+}
 
+```
 Apply Migrations
-
-python manage.py makemigrations
-python manage.py migrate
-
+```bash
+docker exec -it inventory_manage-web-1 python manage.py makemigrations
+```
+```bash
+docker exec -it inventory_manage-web-1 python manage.py migrate
+```
 Create a Superuser
 
-python manage.py createsuperuser
+docker exec -it inventory_manage-web-1 python manage.py createsuperuser
 
 Run the Server
+```bash
+ docker compose up --build
+ ```
 
-python manage.py runserver
+  ```bash
+   docker compose up
+```
+To stop 
+```bash
+  docker compose down
 
-Access the application at http://localhost:8000.
+```
+Access the application at  http://localhost:8000.
