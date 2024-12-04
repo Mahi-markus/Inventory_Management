@@ -72,14 +72,14 @@ Update the DATABASES configuration in settings.py:
 }
 
 ```
-Apply Migrations
+### Apply Migrations
 ```bash
 docker exec -it inventory_manage-web-1 python manage.py makemigrations
 ```
 ```bash
 docker exec -it inventory_manage-web-1 python manage.py migrate
 ```
-Create a Superuser
+### Create a Superuser
 
 docker exec -it inventory_manage-web-1 python manage.py createsuperuser
 
