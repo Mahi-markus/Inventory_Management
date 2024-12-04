@@ -81,7 +81,10 @@ docker exec -it inventory_manage-web-1 python manage.py migrate
 ```
 ### Create a Superuser
 
+```bash
+
 docker exec -it inventory_manage-web-1 python manage.py createsuperuser
+```
 
 Run the Server
 ```bash
@@ -96,4 +99,4 @@ To stop
 docker compose down
 
 ```
-Access the application at  http://localhost:8000.
+Access the application at  http://localhost:8000
