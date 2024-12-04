@@ -27,14 +27,21 @@ Ensure the following software is installed:
    ```bash
    git clone https://github.com/Mahi-markus/Inventory_Management.git
    ```
-   ```bash
+```bash
 cd Inventory_Management
-    ```
-Set Up a Virtual Environment
+```
+### Set Up a Virtual Environment
 
-python3 -m venv venv
-source venv/bin/activate   # On Windows: venv\Scripts\activate
-
+```bash
+python -m venv .venv
+.venv/Scripts/activate    #On windows
+deactivate
+  ```
+```bash
+python3 -m venv .venv
+source .venv/bin/activate    #On linux
+deactivate
+```
 Install Dependencies
 ```bash
 pip install -r requirements.txt
