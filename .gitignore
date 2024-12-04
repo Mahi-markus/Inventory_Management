@@ -23,7 +23,7 @@ __pycache__/
 *.pyd
 __pycache__/
 *.so
-
+.pyc
 # Coverage
 .coverage
 
