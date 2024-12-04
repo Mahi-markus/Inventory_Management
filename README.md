@@ -52,24 +52,27 @@ Create a database:
 
 
 
-Enable the PostGIS extension:
+### Enable the PostGIS extension using the docker-compose.yml and Dockerfile.
 
 
 
-Configure Django Settings
+
+### Configure Django Settings
 
 Update the DATABASES configuration in settings.py:
 ```bash
-   DATABASES = {
+
+DATABASES = {
     'default': {
         "ENGINE": "django.contrib.gis.db.backends.postgis",
         'NAME': 'inventory_manage',         # The name of the database you created
-        'USER': 'dummy',             # The username you defined
-        'PASSWORD': 'dummy123',     # The password you defined
+        'USER': 'mahi',             # The username you defined
+        'PASSWORD': 'mahi123',     # The password you defined
         'HOST': 'db',                 # Use the container name (db) as the hostname
         'PORT': '5432',               # The default PostgreSQL port
     }
 }
+
 
 ```
 ### Apply Migrations
@@ -86,7 +89,7 @@ docker exec -it inventory_manage-web-1 python manage.py migrate
 docker exec -it inventory_manage-web-1 python manage.py createsuperuser
 ```
 
-Run the Server
+### Run the Server
 ```bash
 docker compose up --build
  ```
@@ -94,7 +97,7 @@ docker compose up --build
   ```bash
 docker compose up
 ```
-To stop 
+### To stop 
 ```bash
 docker compose down
 
