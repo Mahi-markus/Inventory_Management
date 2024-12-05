@@ -19,6 +19,7 @@ Ensure the following software is installed:
 
 - **Python 3+**
 - **PostgreSQL** with the **PostGIS extension**
+- **Docker**
 
 ### Steps
 
@@ -102,6 +103,8 @@ and then type y to avoid Bypass password validation
 2. click groups and give a name for example: property_owners
 3. In permissions segment: **select only the  accomodation related permissions and then save**.
 
+![alt text](images/prop_owner_group.png)
+
 ## Create a normal user(property owner):
 
 1.  Access the application at http://localhost:8000
@@ -116,10 +119,17 @@ and then type y to avoid Bypass password validation
 3. In groups select the property owners group
 4. In user permission select all accomodation related permissions and save.
 
+![alt text](images/premission1.png)  
+
+![alt text](images/permission2.png) 
+
 ## normal user
 
 1. After getting permission by admin a normal user can see his own accomomation and update,delete also.
 2. The normal user(property owner) need to login to do that
+
+## property owner and admin both login page:
+![alt text](images/login.png)
 
 ### Importing location data
 1. Login as admin  
@@ -190,3 +200,4 @@ docker exec -it inventory_manage-web-1 coverage run manage.py test
 docker exec -it inventory_manage-web-1  coverage report
 
 ```
+
