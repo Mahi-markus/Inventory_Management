@@ -19,7 +19,6 @@ Ensure the following software is installed:
 
 - **Python 3.8+**
 - **PostgreSQL** with the **PostGIS extension**
-- **Node.js** (optional, for additional frontend setup)
 
 ### Steps
 
@@ -29,7 +28,7 @@ Ensure the following software is installed:
    ```
 
 ```bash
-cd Inventory_Management
+cd inventory_manage
 ```
 
 ### Set Up a Virtual Environment
@@ -59,37 +58,16 @@ docker compose up
 ### To stop
 
 ```bash
-docker compose down
+ctrl c
 
 ```
 
-Install Dependencies(onptional if Dependemcies do any unusual problem)
+Install Dependencies(optional if Dependemcies do any unusual problem)
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Enable the PostGIS extension using the docker-compose.yml and Dockerfile.
-
-### Configure Django Settings
-
-Already Updated the DATABASES configuration in settings.py:
-
-```bash
-
-DATABASES = {
-    'default': {
-        "ENGINE": "django.contrib.gis.db.backends.postgis",
-        'NAME': 'inventory_manage',         # The name of the database you created
-        'USER': 'mahi',             # The username you defined
-        'PASSWORD': 'mahi123',     # The password you defined
-        'HOST': 'db',                 # Use the container name (db) as the hostname
-        'PORT': '5432',               # The default PostgreSQL port
-    }
-}
-
-
-```
 
 ### Apply Migrations
 
@@ -144,9 +122,71 @@ and then type y to avoid Bypass password validation
 1. After getting permission by admin a normal user can see his own accomomation and update,delete also.
 
 ### Importing location data
+1. Login as admin  
+2. Go to location and click on the import
+3. select the location.csv file given in the github
+4. confirm the import
 
 ### Dummy Data example to for tables or models
+1. Dummy data for location:
+```bash
+    id=LOC002,
+    title=New York City,
+    center=select using the cursor pointer
+    parent=select from drop down or can create,
+    location_type=City,
+    country_code=US,
+    state_abbr=NY,
+    city=New York
+```
+
+
+
+2. Dummy data for accomodation:
+```bash
+    id=ACCOM001,
+    feed=1,
+    title=Modern Apartment in NYC,
+    country_code=US,
+    bedroom_count=2,
+    review_score=4.5,
+    usd_rate=150.00,
+    center= select using the location pointer,  # Example location in NYC
+    images=[
+        "https://example.com/image1.jpg",
+        "https://example.com/image2.jpg"
+    ],
+    location=location_nyc,
+    amenities=["WiFi", "Air Conditioning", "Kitchen"],
+    user_id=select from drop down or create, 
+    published=True
+```
+
+3. Dummy data for localize accommodation:
+```bash
+    property= select property from drop down or create,
+    language=en,
+    description=A modern 2-bedroom apartment in the heart of New York City,
+    policy={
+        "check_in": "After 3 PM",
+        "check_out": "Before 11 AM",
+        "cancellation": "Free cancellation up to 48 hours before check-in."
+    }
+```       
 
 ### Sitemap generations nstruction
 
+```bash
+cd inventory_manage
+docker exec -it inventory_manage-web-1 python manage.py generate_sitemap
+```
+
+
 ### Testing Instructions
+```bash
+cd inventory_manage
+docker exec -it inventory_manage-web-1 python manage.py test
+docker exec -it inventory_manage-web-1 coverage run manage.py test
+docker exec -it inventory_manage-web-1  coverage report
+
+```
