@@ -18,7 +18,6 @@ This repository contains the **Property Management System**, a Django-based appl
 Ensure the following software is installed:
 
 - **Python 3+**
-- **PostgreSQL** with the **PostGIS extension**
 - **Docker**
 
 ### Steps
