@@ -100,9 +100,9 @@ and then type y to avoid Bypass password validation
 
 1. login accessing http://localhost:8000/admin as admin
 2. click groups and give a name for example: property_owners
-3. In permissions segment: select all the accomodation related permissions and then save.
+3. In permissions segment: **select only the  accomodation related permissions and then save**.
 
-## Create a normal user(steps):
+## Create a normal user(property owner):
 
 1.  Access the application at http://localhost:8000
 2.  Fill all the necessary fields in order to create property owner user.
@@ -119,6 +119,7 @@ and then type y to avoid Bypass password validation
 ## normal user
 
 1. After getting permission by admin a normal user can see his own accomomation and update,delete also.
+2. The normal user(property owner) need to login to do that
 
 ### Importing location data
 1. Login as admin  
