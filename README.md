@@ -137,6 +137,8 @@ and then type y to avoid Bypass password validation
 3. select the location.csv file given in the github
 4. confirm the import
 
+In the location.csv file parent id is kept null but you can also put a valid parent id there from your database.
+
 ### Dummy Data example to for tables or models
 1. **Dummy data for location:** 
 ```bash
