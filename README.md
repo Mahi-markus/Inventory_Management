@@ -128,7 +128,7 @@ and then type y to avoid Bypass password validation
 4. confirm the import
 
 ### Dummy Data example to for tables or models
-1. Dummy data for location:
+1. **Dummy data for location:** 
 ```bash
     id=LOC002,
     title=New York City,
@@ -142,7 +142,7 @@ and then type y to avoid Bypass password validation
 
 
 
-2. Dummy data for accomodation:
+2. **Dummy data for accomodation:** 
 ```bash
     id=ACCOM001,
     feed=1,
@@ -162,7 +162,7 @@ and then type y to avoid Bypass password validation
     published=True
 ```
 
-3. Dummy data for localize accommodation:
+3. **Dummy data for localize accommodation:**
 ```bash
     property= select property from drop down or create,
     language=en,
@@ -174,7 +174,7 @@ and then type y to avoid Bypass password validation
     }
 ```       
 
-### Sitemap generations nstruction
+### Sitemap generations instruction
 
 ```bash
 cd inventory_manage
