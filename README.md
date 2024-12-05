@@ -17,18 +17,16 @@ This repository contains the **Property Management System**, a Django-based appl
 
 Ensure the following software is installed:
 
-- **Python 3.8+**
+- **Python 3+**
 - **PostgreSQL** with the **PostGIS extension**
 
 ### Steps
 
 1. **Clone the Repository**
-   ```bash
-    git clone https://github.com/Mahi-markus/Inventory_Management.git
-   ```
 
-```bash
-cd inventory_manage
+  ```bash
+ git clone https://github.com/Mahi-markus/Inventory_Management.git
+
 ```
 
 ### Set Up a Virtual Environment
@@ -48,6 +46,7 @@ deactivate
 ### Run the Server
 
 ```bash
+cd inventory_manage
 docker compose up --build
 ```
 
